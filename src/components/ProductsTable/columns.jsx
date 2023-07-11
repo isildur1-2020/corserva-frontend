@@ -17,7 +17,7 @@ export const getColumns = (handleEditClick, handleDeleteClick) => {
             color="inherit"
             icon={<EditIcon />}
             className="textPrimary"
-            onClick={() => handleEditClick(row.id)}
+            onClick={() => handleEditClick(row)}
           />,
           <GridActionsCellItem
             label="Delete"
