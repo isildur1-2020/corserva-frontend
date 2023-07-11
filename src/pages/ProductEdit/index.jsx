@@ -7,7 +7,7 @@ import { useHttpPatch } from "../../hooks/useHttpPatch";
 import { updateProduct } from "../../services/products";
 
 const ProductEdit = () => {
-  useSetTitle("Create Product");
+  useSetTitle("Edit Product");
   const { state: mainState } = useContext(MainContext);
   const { currentProduct } = mainState;
   const { state, handleChange } = useForm(currentProduct);

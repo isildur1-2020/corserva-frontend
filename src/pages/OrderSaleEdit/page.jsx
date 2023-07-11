@@ -2,11 +2,18 @@ import { memo } from "react";
 import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import MenuItem from "@mui/material/MenuItem";
 import TextField from "@mui/material/TextField";
 import CircularProgress from "@mui/material/CircularProgress";
 
-const Page = ({ state, handleSubmit, handleChange, loading }) => {
-  const { name, price, stock } = state;
+const Page = ({
+  state,
+  loading,
+  handleSubmit,
+  handleChange,
+  statusOptions,
+}) => {
+  const { status, trackingInfo } = state;
   return (
     <Box className="h-full">
       <Box
@@ -16,34 +23,31 @@ const Page = ({ state, handleSubmit, handleChange, loading }) => {
         className="h-full flex flex-col align-center justify-center"
       >
         <TextField
+          select
           required
-          name="name"
-          label="Name"
-          value={name}
+          name="status"
           margin="dense"
+          label="Status"
+          value={status}
           onChange={handleChange}
-        />
+        >
+          {statusOptions.map(({ value }) => (
+            <MenuItem key={value} value={value}>
+              {value}
+            </MenuItem>
+          ))}
+        </TextField>
         <TextField
           required
-          type="number"
-          name="price"
-          label="Price"
-          value={price}
           margin="dense"
-          onChange={handleChange}
-        />
-        <TextField
-          required
-          name="stock"
-          type="number"
-          label="Stock"
-          value={stock}
-          margin="dense"
+          name="trackingInfo"
+          value={trackingInfo}
+          label="Tracking Info"
           onChange={handleChange}
         />
         <Box mt={2} className="flex justify-center">
           {!loading ? (
-            <Button type="submit" fullWidth size="large" variant="outlined">
+            <Button fullWidth size="large" type="submit" variant="outlined">
               Update
             </Button>
           ) : (
@@ -60,6 +64,7 @@ Page.propTypes = {
   state: PropTypes.object.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  statusOptions: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default memo(Page);

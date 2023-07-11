@@ -1,22 +1,29 @@
 import EditIcon from "@mui/icons-material/Edit";
+import InfoIcon from "@mui/icons-material/Info";
 import { GridActionsCellItem } from "@mui/x-data-grid";
 import DeleteIcon from "@mui/icons-material/DeleteOutlined";
 
-const currencyFormatter = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-});
-
-export const getColumns = (handleEditClick, handleDeleteClick) => {
+export const getColumns = (
+  handleEditClick,
+  handleInfoClick,
+  handleDeleteClick
+) => {
   return [
     {
       field: "actions",
       type: "actions",
       headerName: "Actions",
-      width: 100,
+      width: 130,
       cellClassName: "actions",
       getActions: ({ row }) => {
         return [
+          <GridActionsCellItem
+            label="Info"
+            color="inherit"
+            icon={<InfoIcon />}
+            className="textPrimary"
+            onClick={() => handleInfoClick(row)}
+          />,
           <GridActionsCellItem
             label="Edit"
             color="inherit"
@@ -34,13 +41,19 @@ export const getColumns = (handleEditClick, handleDeleteClick) => {
       },
     },
     { field: "id", headerName: "id", width: 20 },
-    { field: "name", headerName: "Name", width: 130 },
+    { field: "status", headerName: "Status", width: 100 },
     {
-      field: "price",
-      headerName: "Price",
-      width: 120,
-      valueFormatter: ({ value }) => currencyFormatter.format(Number(value)),
+      field: "trackingInfo",
+      headerName: "Tracking",
+      width: 80,
     },
-    { field: "stock", headerName: "Stock", width: 60 },
+    {
+      field: "products",
+      headerName: "Products",
+      width: 80,
+      valueFormatter: ({ value }) => {
+        return value.length;
+      },
+    },
   ];
 };

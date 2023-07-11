@@ -3,13 +3,14 @@ import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { APP_PATH } from "../../utils/path";
-import ProductsTable from "../../components/ProductsTable";
+import OrderSalesTable from "../../components/OrderSalesTable";
 
 const Page = ({
   data,
   isLoading,
   handleRedirect,
   handleEditClick,
+  handleInfoClick,
   handleDeleteClick,
 }) => {
   return (
@@ -19,15 +20,16 @@ const Page = ({
           fullWidth
           size="large"
           variant="contained"
-          onClick={() => handleRedirect(APP_PATH.createProduct)}
+          onClick={() => handleRedirect(APP_PATH.createOrderSale)}
         >
-          Create product
+          Create Order Sale
         </Button>
       </Box>
       <Box mt={4}>
-        <ProductsTable
+        <OrderSalesTable
           data={data}
           isLoading={isLoading}
+          handleInfoClick={handleInfoClick}
           handleEditClick={handleEditClick}
           handleDeleteClick={handleDeleteClick}
         />
@@ -40,6 +42,7 @@ Page.propTypes = {
   data: PropTypes.array.isRequired,
   isLoading: PropTypes.bool.isRequired,
   handleRedirect: PropTypes.func.isRequired,
+  handleInfoClick: PropTypes.func.isRequired,
   handleEditClick: PropTypes.func.isRequired,
   handleDeleteClick: PropTypes.func.isRequired,
 };

@@ -44,7 +44,7 @@ const Page = ({ state, handleSubmit, handleChange, loading }) => {
         <Box mt={2} className="flex justify-center">
           {!loading ? (
             <Button type="submit" fullWidth size="large" variant="outlined">
-              Crear
+              Create
             </Button>
           ) : (
             <CircularProgress />
