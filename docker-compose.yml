@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  app:
+    restart: unless-stopped
+    image: corserva_frontend
+    container_name: corserva_frontend
+    build:
+      context: .
+      target: prod
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
