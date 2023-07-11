@@ -1,8 +1,9 @@
 import Page from "./page";
-import { useNavigate } from "react-router-dom";
 import { useState, useCallback, memo } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const BottomNavigator = () => {
+  const location = useLocation();
   const navigate = useNavigate();
   const [option, setOption] = useState(-1);
   const handleChangeOption = useCallback((ev, newValue) => {
@@ -12,6 +13,7 @@ const BottomNavigator = () => {
   return (
     <Page
       option={option}
+      location={location}
       handleRedirect={handleRedirect}
       handleChangeOption={handleChangeOption}
     />

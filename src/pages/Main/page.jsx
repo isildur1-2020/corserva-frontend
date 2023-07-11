@@ -2,16 +2,10 @@ import { memo } from "react";
 import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 
-const Page = ({ title, optionList, handleRedirect }) => (
-  <Box>
-    <Box mt={1}>
-      <Typography variant="h3" component="h1">
-        {title}
-      </Typography>
-    </Box>
-    <Box className="flex flex-col items-center mt-40">
+const Page = ({ optionList, handleRedirect }) => (
+  <Box className="h-full">
+    <Box className="h-full flex flex-col items-center justify-center">
       {optionList.map((option) => {
         const { label, redirect, marginTop, icon } = option;
         return (
@@ -33,7 +27,6 @@ const Page = ({ title, optionList, handleRedirect }) => (
 );
 
 Page.propTypes = {
-  title: PropTypes.string.isRequired,
   optionList: PropTypes.array.isRequired,
   handleRedirect: PropTypes.func.isRequired,
 };
